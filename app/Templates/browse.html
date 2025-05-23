@@ -1,0 +1,134 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>ZalanDIS - Browse Modern Clothing</title>
+
+  <style>
+  .card-img-top {
+  width: 100%;
+  height: 300px; /* fixed height, adjust as needed */
+  object-fit: cover; /* crop & fill the box, preserving aspect ratio */
+  }
+  </style>
+
+</head>
+
+<body>
+  <div class="container py-4">
+    <h1 class="mb-4">ZalanDIS Clothing Catalogue, for your pleasure!</h1>
+
+    <!-- User selection of filtering and sorting  -->
+    <form method="get" class="row g-3 align-items-end mb-4">
+      
+      <!-- Color selection  -->
+       <div class="col-md-2">
+         <label class="form-label">Color</label>
+          <select class="form-select" name="color">
+            <option value="Other">All</option>
+            <option value="Red" {% if selected_color == 'Red' %}selected{% endif %}>Red</option>
+            <option value="Blue" {% if selected_color == 'Blue' %}selected{% endif %}>Blue</option>
+            <option value="Yellow" {% if selected_color == 'Yellow' %}selected{% endif %}>Yellow</option>
+            <option value="Green" {% if selected_color == 'Green' %}selected{% endif %}>Green</option>
+            <option value="Black" {% if selected_color == 'Black' %}selected{% endif %}>Black</option>
+          </select>  
+       </div>
+
+      <!-- Size selection  -->
+      <div class="col-md-2">
+        <label class="form-label">Size</label>
+        <select class="form-select" name="size">
+          <option value="Other">All</option>
+          <option value="Small" {% if selected_size == 'small' %}selected{% endif %}>Small</option>
+          <option value="Medium" {% if selected_size == 'medium' %}selected{% endif %}>Medium</option>
+          <option value="Large" {% if selected_size == 'large' %}selected{% endif %}>Large</option>
+        </select>
+      </div>
+      
+
+      <!-- Type selection  -->
+       <div class="col-md-2">
+         <label class="form-label">Type</label>
+          <select class="form-select" name="type">
+            <option value="Other">Include all</option>
+            <option value="T-Shirt" {% if selected_type == 'T-Shirt' %}selected{% endif %}>T-Shirt</option>
+            <option value="Shoes" {% if selected_type == 'Shoes' %}selected{% endif %}>Shoes</option>
+            <option value="Shorts" {% if selected_type == 'Shorts' %}selected{% endif %}>Shorts</option>
+            <option value="Shirt" {% if selected_type == 'Shirt' %}selected{% endif %}>Shirt</option>
+            <option value="Pants" {% if selected_type == 'Pants' %}selected{% endif %}>Pants</option>
+            <option value="Skirt" {% if selected_type == 'Skirt' %}selected{% endif %}>Skirt</option>
+            <option value="Hat" {% if selected_type == 'Hat' %}selected{% endif %}>Hat</option>
+            <option value="Dress" {% if selected_type == 'Dress' %}selected{% endif %}>Dress</option>
+            <option value="Longsleeve" {% if selected_type == 'Longsleeve' %}selected{% endif %}>Longsleeve</option>
+            <option value="Outwear" {% if selected_type == 'Outwear' %}selected{% endif %}>Outwear</option>
+          </select>  
+        </div>
+
+        <!-- Sort by selection  -->
+        <div class="col-md-2">
+          <label class="form-label">Sort by</label>
+          <select class="form-select" name="sort_by">
+            <option value="name" {% if selected_sort_by == 'name' %}selected{% endif %}>Name</option>
+            <option value="price" {% if selected_sort_by == 'price' %}selected{% endif %}>Price</option>
+          </select>
+        </div>
+
+        <!-- Sorting direction selection  -->
+        <div class="col-md-2">
+          <label class="form-label">Sorting direction</label>
+          <select class="form-select" name="sort_direction">
+            <option value="asc" {% if selected_sort_direction == 'asc' %}selected{% endif %}>Lowest first</option>
+            <option value="desc" {% if selected_sort_direction == 'desc' %}selected{% endif %}>Highest first</option>
+          </select>
+        </div>  
+
+
+
+        <div class="col-md-2">
+          <button class="btn btn_primary w-100" type="submit">Apply selected filters</button>
+        </div>
+    </form>
+    
+    
+    <!-- Item selection and showing to the user  -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for item in items%}
+        <div class="col">
+          <div class="card h-100">
+            {% if item.image_url %}
+              <img src="{{ url_for('static', filename='images/' + item.image_url + '.jpg') }}" class="card-img-top" alt="{{ item.name }}" >
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text mb-1"><strong>Type:</strong> {{item.type}}</p>
+              <p class="card-text mb-1"><strong>Color:</strong> {{ item.color }}</p>
+              <p class="card-text mb-1"><strong>Size:</strong> {{ item.size }}</p>
+              <p class="card-text"><strong>Price:</strong> {{"%.2f"|format(item.price)}} DKK</p>
+
+              <!-- NOT FINISHED; ADD THE ADD-TO-CART FUNCTION HERE; IDK HOW IT SHOULD LOOK  -->
+              <a href="{{ url_for('add', item_id=item.id) }}" class="btn btn-primary w-100">Add to Cart</a>
+            
+              </form>
+
+
+<!-- 🛒 Go to Cart Button -->
+<a href="/cart">
+  <button style="font-size: 16px; padding: 10px 15px; margin-bottom: 20px; cursor: pointer;">
+    🛒 View Cart
+  </button>
+</a>
+
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <div class="col-12">
+          <h3 class="text-muted">No items in stock with those filters</h3>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  </body>  
+</html>

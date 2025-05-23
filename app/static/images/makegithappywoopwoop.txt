@@ -1,0 +1,1 @@
+Input images into this folder. Github removes empty folders so this needs to be a placeholder.

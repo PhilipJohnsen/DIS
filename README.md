@@ -25,4 +25,4 @@ How to compile:
       4) This displays the checkout which uses RegEx matching. The zip code must be a 4-digit number. The email must be a string followed by one and only one @ symbol, 
          whereafter the domain name is restricted to using letters, dots and dashes. Lastly there must be a ".com" or similar using a dot and at least 2 letters.
          Input your zip code and email address and press "Pay Now" to simulate payment.
-      5) The cart gets wiped clean, and you can start your browsing again.
+      5) The cart gets wiped clean, and you can start your browsing again. 

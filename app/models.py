@@ -1,8 +1,8 @@
 from app import conn
 
-# ------------------------
-# CLOTHING ITEM FUNCTIONS
-# ------------------------
+
+# CLOTHING
+
 
 class ClothingItem:
     def __init__(self, id, name, type_, size, color, price, image_url):
@@ -76,9 +76,9 @@ def insert_clothing_item(name, type_, size, color, price, image_url):
         conn.commit()
 
 
-# ------------------------
-# CUSTOMER & CART LOGIC
-# ------------------------
+
+# CUSTOMER and the CART
+
 
 def create_customer(name):
     with conn.cursor() as cur:

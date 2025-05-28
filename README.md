@@ -5,8 +5,9 @@ How to compile:
   To compile the program, you must prepare the following files to fit your system.
         1. app/__init__.py
             This file you must change so it fits your PGAdmin server. Change DB Name, user, password, port and host to fit your case.
-        2. .venv/pyvenv.cfg
-            This file you must change so it fits the location of your Python 3.12.2. This allows for using a virtual machine to run it on. 
+        2. Go to the main directory and use the following commands to create a virtual environment and install the packages:
+              python -m venv .venv
+              pip install -r requirements.txt
         3.  Download images from https://drive.google.com/drive/folders/1hi8ss8tQxoFLmgVTm1-E8g1zi6Xtcuoa?usp=sharing. This is a folder with ~3500 images, 
             the whole folder is just 100mb though. Place these images into app/static/images. The website loads images from this folder only.
 
@@ -14,7 +15,6 @@ How to compile:
       1. Run init_db.py. This creates tables in your sql server (we used PGADmin 4)
       2. Run import_csv.py. This parses all clothing items into the tables in PGAdmin.
       3. Run run.py. This launches the flask localhost webpage. We use port 5000 as it is typically open.
-      4. "Requirements.txt" includes the packages that you must download
 
   How to interact with the web-app?
       1. Browse clothing by utilising the filters we have implemented to find something to your liking. Colours and sizes and prices and names are synthetically added

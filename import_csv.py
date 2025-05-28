@@ -28,4 +28,4 @@ with app.app_context():
         )
 
     conn.commit()
-    print("✅ Data importeret!")
+    print("Data importeret!")
